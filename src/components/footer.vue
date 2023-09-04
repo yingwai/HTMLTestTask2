@@ -84,7 +84,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts">
 import TwitterIcon from "../assets/twitter_icon.vue";
 import TwitterGradientIcon from "../assets/twitter_gradient_icon.vue";
 import FacebookIcon from "../assets/facebook_icon.vue";
@@ -101,10 +101,26 @@ import TelegramIcon from "../assets/telegram_icon.vue";
 import TelegramGradientIcon from "../assets/telegram_gradient_icon.vue";
 import VkIcon from "../assets/vk_icon.vue";
 import VkGradientIcon from "../assets/vk_gradient_icon.vue";
-</script>
 
-<script>
 export default {
+    components: {
+        TwitterIcon,
+        TwitterGradientIcon,
+        FacebookIcon,
+        FacebookGradientIcon,
+        InstagramIcon,
+        InstagramGradientIcon,
+        LinkedInIcon,
+        LinkedInGradientIcon,
+        YoutubeIcon,
+        YoutubeGradientIcon,
+        TikTokIcon,
+        TikTokGradientIcon,
+        TelegramIcon,
+        TelegramGradientIcon,
+        VkIcon,
+        VkGradientIcon,
+    },
     data() {
         return {
             isTwitter: false,
@@ -112,7 +128,6 @@ export default {
             isInstagram: false,
             isLinkedIn: false,
             isYoutube: false,
-            isTiktok: false,
             isTiktok: false,
             isTelegram: false,
             isVk: false,
@@ -175,6 +190,23 @@ p {
 
     svg {
         cursor: pointer;
+    }
+}
+
+@media (max-width: 1200px) {
+    .footer {
+        height: auto;
+        padding: 40px 40px 20px 40px;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .social {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
     }
 }
 

@@ -10,10 +10,18 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts">
 import Header from "./components/header.vue";
 import Footer from "./components/footer.vue";
 import Main from "./pages/main.vue";
+
+export default {
+    components: {
+        Header,
+        Footer,
+        Main,
+    },
+};
 </script>
 
 <style lang="scss">
@@ -49,10 +57,26 @@ body {
     margin: 128px 140px 30px 140px;
 }
 
+@media (max-width: 1680px) {
+    .container {
+        margin: 128px 100px 30px 100px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .container {
+        margin: 128px 50px 30px 50px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        margin: 128px 20px 30px 50px;
+    }
+}
+
 @media (max-width: 767px) {
     .container {
-        flex: 1;
-        height: 100%;
         margin: 110px 20px 30px 20px;
     }
 }

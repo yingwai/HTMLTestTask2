@@ -77,7 +77,7 @@
         <div class="right">
             <h3>BLOG</h3>
             <div class="blog-container">
-                <div class="blog-list" id="blog-list" @mousewheel="fScroll">
+                <div class="blog-list" id="blog-list">
                     <div class="blog" v-for="i in 5" :key="i">
                         <h5>
                             Payment methods: Skrill, Neteller, webmoney, Bank
@@ -88,10 +88,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="burger-menu" v-if="BurgerMenuStore.getBurgerMenu">
+            <div class="burger-navigation">
+                <div href="#AboutUs" class="nav"><p>About us</p></div>
+                <div href="#Brands" class="nav"><p>Brands</p></div>
+                <div href="#Commissions" class="nav"><p>Commissions</p></div>
+                <div href="#News" class="nav"><p>News</p></div>
+                <div href="#ContactUs" class="nav"><p>Contact us</p></div>
+                <div href="#Careers" class="nav"><p>Careers</p></div>
+            </div>
+
+            <div class="burger-input">
+                <div class="input"><p>LOG IN</p></div>
+                <div class="input full"><p>SIGN UP</p></div>
+            </div>
+        </div>
     </div>
 </template>
 
-<script setup>
+<script lang="ts">
 import MoneyLognIcon from "../assets/money_long_icon.vue";
 import FootballIcon from "../assets/football_icon.vue";
 import MIcon from "../assets/m_icon.vue";
@@ -100,6 +116,25 @@ import WorldLongIcon from "../assets/world_long_icon.vue";
 import TimerIcon from "../assets/timer_icon.vue";
 import CrownIcon from "../assets/crown_icon.vue";
 import CrownLongIcon from "../assets/crown_long_icon.vue";
+import { useBurgerMenuStore } from "../stores/BurgerMenuStore";
+
+export default {
+    components: {
+        MoneyLognIcon,
+        FootballIcon,
+        MIcon,
+        ShieldIcon,
+        WorldLongIcon,
+        TimerIcon,
+        CrownIcon,
+        CrownLongIcon,
+    },
+    data() {
+        return {
+            BurgerMenuStore: useBurgerMenuStore(),
+        };
+    },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -112,6 +147,8 @@ import CrownLongIcon from "../assets/crown_long_icon.vue";
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+
+    position: relative;
 }
 
 p {
@@ -156,6 +193,7 @@ p {
         border-radius: 48px;
         background: var(--main-blue);
         color: #fff;
+        border: none;
 
         font-size: 24px;
         font-style: normal;
@@ -338,6 +376,10 @@ p {
     }
 }
 
+.burger-menu {
+    display: none;
+}
+
 @keyframes vertical-down-marquee {
     0% {
         transform: translateY(-100%);
@@ -386,6 +428,285 @@ p {
     }
 }
 
+@media (max-width: 1680px) {
+    .left {
+        .text {
+            h1 {
+                font-size: 76px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 70px;
+            }
+
+            p {
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    .right {
+        width: 33%;
+
+        .blog-container {
+            width: 100%;
+            height: 541px;
+            padding: 24px 0;
+
+            border: 2px solid var(--main-blue);
+
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .blog-list {
+            width: 95%;
+            height: 100%;
+            padding: 24px 0;
+
+            .blog {
+                width: 65%;
+                padding: 16px 40px;
+                justify-content: space-around;
+
+                h5 {
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 20px;
+                }
+
+                p {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 450;
+                    line-height: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .left {
+        .text {
+            gap: 24px;
+            text-align: center;
+
+            h1 {
+                font-size: 65px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 60px;
+            }
+
+            p {
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 30px;
+            }
+        }
+
+        .start-input {
+            width: 100%;
+            padding: 15px 0;
+
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    }
+
+    .center {
+        height: 400px;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+
+        overflow: hidden;
+
+        position: relative;
+
+        .fg-gradient {
+            background: linear-gradient(
+                90deg,
+                #120a1e 0%,
+                rgba(255, 255, 255, 0) 13%,
+                rgba(252, 252, 252, 0) 86%,
+                #120a1e 100%
+            );
+        }
+    }
+
+    .line {
+        height: 100px;
+
+        display: flex;
+        flex-direction: row;
+        gap: 135px;
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+        }
+
+        &.column-1 {
+            opacity: 0.2;
+
+            & > div {
+                animation: horizontal-down-marquee 30s infinite linear;
+            }
+        }
+        &.column-2 {
+            opacity: 0.5;
+
+            & > div {
+                animation: horizontal-up-marquee 35s infinite linear;
+            }
+        }
+        &.column-3 {
+            opacity: 0.4;
+
+            & > div {
+                animation: horizontal-down-marquee 40s infinite linear;
+            }
+        }
+    }
+
+    .right {
+        width: 100%;
+
+        .blog-container {
+            width: 100%;
+            height: 541px;
+            padding: 24px 0;
+
+            border: 2px solid var(--main-blue);
+
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .blog-list {
+            width: 95%;
+            height: 100%;
+            padding: 24px 0;
+
+            .blog {
+                width: 85%;
+                padding: 16px 40px;
+                justify-content: space-around;
+
+                h5 {
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 24px;
+                }
+
+                p {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 450;
+                    line-height: 10px;
+                }
+            }
+        }
+    }
+
+    .burger-menu {
+        padding: 130px 10px 10px 10px;
+        display: flex;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background: var(--main-color);
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .burger-navigation {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .nav {
+                width: 100%;
+                padding: 13px 0;
+
+                border-radius: 28px;
+                border: 2px solid var(--main-blue);
+                background: var(--main-color);
+
+                p {
+                    margin: 0 20px;
+
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .burger-input {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .input {
+                width: 100%;
+                padding: 13px 0;
+
+                border-radius: 28px;
+                border: 2px solid #9dadf2;
+                background: var(--main-color);
+
+                text-align: center;
+
+                p {
+                    margin: 0 20px;
+
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+
+                &.full {
+                    border: none;
+                    background-color: var(--main-blue);
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 767px) {
     .main-container {
         flex-direction: column;
@@ -399,9 +720,6 @@ p {
             text-align: center;
 
             h1 {
-                margin: 0;
-                padding: 0;
-
                 font-size: 56px;
                 font-style: normal;
                 font-weight: 500;
@@ -409,8 +727,6 @@ p {
             }
 
             p {
-                color: #ffffff9c;
-
                 font-size: 26px;
                 font-style: normal;
                 font-weight: 500;
@@ -510,32 +826,12 @@ p {
             height: 100%;
             padding: 24px 0;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 16px;
-
-            overflow-y: scroll;
-            scroll-behavior: smooth;
-
             .blog {
                 width: 65%;
-                padding: 16px 64px;
-
-                border-radius: 196px;
-                background-color: #1e1231;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                cursor: pointer;
+                padding: 16px 40px;
+                justify-content: space-around;
 
                 h5 {
-                    margin: 0;
-                    padding: 0;
-
                     font-size: 20px;
                     font-style: normal;
                     font-weight: 300;
@@ -543,15 +839,81 @@ p {
                 }
 
                 p {
-                    color: #ffffff99;
-                    font-family: Futura PT;
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 450;
                     line-height: 10px;
                 }
+            }
+        }
+    }
 
-                &:hover {
+    .burger-menu {
+        padding: 130px 10px 10px 10px;
+        display: flex;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background: var(--main-color);
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .burger-navigation {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .nav {
+                width: 100%;
+                padding: 13px 0;
+
+                border-radius: 28px;
+                border: 2px solid var(--main-blue);
+                background: var(--main-color);
+
+                p {
+                    margin: 0 20px;
+
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .burger-input {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .input {
+                width: 100%;
+                padding: 13px 0;
+
+                border-radius: 28px;
+                border: 2px solid #9dadf2;
+                background: var(--main-color);
+
+                text-align: center;
+
+                p {
+                    margin: 0 20px;
+
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+
+                &.full {
+                    border: none;
                     background-color: var(--main-blue);
                 }
             }

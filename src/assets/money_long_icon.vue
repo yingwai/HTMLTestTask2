@@ -36,7 +36,7 @@
     fill: var(--main-blue);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
     .svg-icon {
         rotate: 90deg;
         transform: translate(-60px, 50px);
